@@ -1,7 +1,12 @@
 fastapi
 uvicorn
+requests
 pydantic
-langchain
-langchain-community
 sqlalchemy
-tiktoken 
+openpyxl
+tiktoken
+langchain
+langchain-google-genai
+langchain-community
+pandas
+
