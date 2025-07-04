@@ -1,0 +1,10 @@
+2025-07-04 17:14:54,774 | INFO | User Question: hi
+2025-07-04 17:14:54,774 | INFO | Cleaned SQL: Error: No specific query requested. Please provide a question about the data.
+2025-07-04 17:15:11,531 | INFO | User Question: who are you ?
+2025-07-04 17:15:11,533 | INFO | Cleaned SQL: Error: This question cannot be answered by querying the provided Kabaddi database.
+2025-07-04 17:15:35,675 | INFO | User Question: pawan tackles
+2025-07-04 17:15:35,676 | INFO | Cleaned SQL: SELECT Season, Match_Number, Game_Half_Period, Attacking_Player_Name, Primary_Defender_Name, Secondary_Defender_Name, Defense_Result_Status, Defense_Techniques_Used FROM S_RBR WHERE (Primary_Defender_Name LIKE '%Pawan%' OR Secondary_Defender_Name LIKE '%Pawan%') AND Defense_Result_Status COLLATE NOCASE = 'Successful';
+2025-07-04 17:16:07,153 | INFO | User Question: pkl11 winner
+2025-07-04 17:16:07,153 | INFO | Cleaned SQL: SELECT Match_Winner_Team FROM S_RBR WHERE Season = 'PKL11' ORDER BY Match_Number DESC LIMIT 1;
+2025-07-04 17:17:49,746 | INFO | User Question: pawan tackle url
+2025-07-04 17:17:49,746 | INFO | Cleaned SQL: SELECT Raid_Video_URL FROM S_RBR WHERE Primary_Defender_Name LIKE '%Pawan%' OR Secondary_Defender_Name LIKE '%Pawan%';
