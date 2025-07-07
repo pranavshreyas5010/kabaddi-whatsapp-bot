@@ -1,3 +1,6 @@
+import os
+import tiktoken
+import requests
 from fastapi import FastAPI, HTTPException, Request
 from pydantic import BaseModel
 from modules.sheet_loader import load_sheets
@@ -13,15 +16,13 @@ from langchain_core.prompts import PromptTemplate
 from langchain_core.runnables import RunnableLambda, RunnablePassthrough
 from langchain_core.output_parsers import StrOutputParser
 from operator import itemgetter
-import tiktoken
-import requests
 
 app = FastAPI()
 
-# WhatsApp settings
-VERIFY_TOKEN = "12345"
-ACCESS_TOKEN = "EAARZAswajqEkBPCskDRFvYhm7PoCb7DW7qlfpyZAGWApjkc7UXQ8G79iPJ6R9w3NSN9Mq3bcB357HfT0he95vEb6zjeTWPUfJAGZBqQ3QlK9e79Y6Myh9570JVlTRK16sHs5dhRjlYmRUT3sBBbqybaxAT8jZA0al6GjTH88WdLWZCNmakawNJdWb25wESXbCFsdcJJycSu6aNOJKFZBToKBcDvj3s0BX3ZBwMuZBJB7ij6cDQZDZD"
-PHONE_NUMBER_ID = "624292667445289"
+# ✅ WhatsApp settings from environment variables
+VERIFY_TOKEN = os.environ.get("VERIFY_TOKEN", "12345")
+ACCESS_TOKEN = os.environ.get("ACCESS_TOKEN")
+PHONE_NUMBER_ID = os.environ.get("PHONE_NUMBER_ID")
 
 # Initialize Kabaddi bot
 configure_logging()
@@ -30,6 +31,9 @@ engine = load_into_sqlite(tables)
 db = SQLDatabase(engine)
 llm = get_llm()
 table_details = db.get_table_info()
+
+# (rest of your code stays the same)
+
 
 final_prompt = PromptTemplate(
     input_variables=["input", "table_info", "top_k"],

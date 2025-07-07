@@ -8,3 +8,41 @@
 2025-07-04 17:16:07,153 | INFO | Cleaned SQL: SELECT Match_Winner_Team FROM S_RBR WHERE Season = 'PKL11' ORDER BY Match_Number DESC LIMIT 1;
 2025-07-04 17:17:49,746 | INFO | User Question: pawan tackle url
 2025-07-04 17:17:49,746 | INFO | Cleaned SQL: SELECT Raid_Video_URL FROM S_RBR WHERE Primary_Defender_Name LIKE '%Pawan%' OR Secondary_Defender_Name LIKE '%Pawan%';
+2025-07-07 11:30:57,820 | INFO | User Question: hi
+2025-07-07 11:30:57,821 | INFO | Cleaned SQL: Error: No specific query requested. Please provide a question about the data.
+2025-07-07 11:35:37,978 | INFO | User Question: hi
+2025-07-07 11:35:37,980 | INFO | Cleaned SQL: Error: No specific query requested. Please provide a question about the data.
+2025-07-07 11:37:05,120 | INFO | User Question: pawan special move
+2025-07-07 11:37:05,120 | INFO | Cleaned SQL: SELECT DISTINCT Attack_Techniques_Used FROM S_RBR WHERE Attacking_Player_Name LIKE 'Pawan%' AND Attack_Techniques_Used IS NOT NULL;
+2025-07-07 11:37:35,944 | INFO | User Question: hi
+2025-07-07 11:37:35,944 | INFO | Cleaned SQL: Error: No specific query requested. Please provide a question about the data.
+2025-07-07 11:38:31,238 | INFO | User Question: what data do you have?
+2025-07-07 11:38:31,240 | INFO | Cleaned SQL: error: This question cannot be answered with a SQL query. I can only generate queries to retrieve data from the 'S_RBR' table based on specific conditions.
+2025-07-07 11:39:09,462 | INFO | User Question: how many raids did pawan do in season 11
+2025-07-07 11:39:09,462 | INFO | Cleaned SQL: SELECT COUNT(Unique_Raid_Identifier) FROM S_RBR WHERE Season = 'PKL11' AND Attacking_Player_Name LIKE '%Pawan%';
+2025-07-07 11:39:38,002 | INFO | User Question: how many of them were successful?
+2025-07-07 11:39:38,002 | INFO | Cleaned SQL: SELECT 'Error: Ambiguous question. Please provide the full context for "them".' AS Error;
+2025-07-07 11:40:03,959 | INFO | User Question: pawan raids, how many of them were successful
+2025-07-07 11:40:03,960 | INFO | Cleaned SQL: SELECT COUNT(Unique_Raid_Identifier) FROM S_RBR WHERE Attacking_Player_Name LIKE 'Pawan%' AND Attack_Result_Status COLLATE NOCASE = 'Successful';
+2025-07-07 11:40:21,669 | INFO | User Question: what was his strike rate?
+2025-07-07 11:40:21,669 | INFO | Cleaned SQL: Error: The question is too ambiguous. Please specify whose strike rate you are asking for (e.g., a player, a team) and what "strike rate" means in this context (e.g., successful raids per total raids, points per raid).
+2025-07-07 11:41:10,575 | INFO | User Question: successful raids links of pawan in the last 10 raids of every game.
+2025-07-07 11:41:10,575 | INFO | Cleaned SQL: WITH RankedRaids AS ( SELECT Match_Number, Raid_Video_URL, Attacking_Player_Name, Attack_Result_Status, ROW_NUMBER() OVER (PARTITION BY Match_Number ORDER BY Unique_Raid_Identifier DESC) AS raid_rank_in_match FROM S_RBR ) SELECT Raid_Video_URL FROM RankedRaids WHERE raid_rank_in_match <= 10 AND Attacking_Player_Name LIKE '%Pawan%' AND Attack_Result_Status COLLATE NOCASE = 'Successful';
+2025-07-07 11:41:40,990 | INFO | User Question: pawan defense moves
+2025-07-07 11:41:40,990 | INFO | Cleaned SQL: SELECT DISTINCT Defense_Techniques_Used FROM S_RBR WHERE (Primary_Defender_Name LIKE '%Pawan%' OR Secondary_Defender_Name LIKE '%Pawan%') AND Defense_Techniques_Used IS NOT NULL;
+2025-07-07 11:42:07,817 | INFO | User Question: successful raids links to pawan in the last 10 raids of every game against pune.
+2025-07-07 11:42:07,817 | INFO | Cleaned SQL: WITH RankedRaids AS ( SELECT Unique_Raid_Identifier, Match_Number, Attacking_Player_Name, Defending_Team_Code, Attack_Result_Status, Raid_Video_URL, ROW_NUMBER() OVER (PARTITION BY Match_Number ORDER BY Unique_Raid_Identifier DESC) AS raid_rank_in_match FROM S_RBR ) SELECT Raid_Video_URL FROM RankedRaids WHERE raid_rank_in_match <= 10 AND Attacking_Player_Name LIKE '%Pawan%' COLLATE NOCASE AND Defending_Team_Code = 'PU' COLLATE NOCASE AND Attack_Result_Status = 'Successful' COLLATE NOCASE;
+2025-07-07 11:43:02,809 | INFO | User Question: pawan escaping an ankle hold by a defender in every match
+2025-07-07 11:43:02,809 | INFO | Cleaned SQL: SELECT DISTINCT Season, Match_Number FROM S_RBR WHERE Attacking_Player_Name LIKE '%Pawan%' AND Defense_Techniques_Used LIKE '%AnkleHold%' AND Attack_Result_Status COLLATE NOCASE = 'Successful';
+2025-07-07 11:43:27,180 | INFO | User Question: raid urls of pawan escaping an ankle hold by a defender in every match
+2025-07-07 11:43:27,180 | INFO | Cleaned SQL: SELECT Raid_Video_URL FROM S_RBR WHERE Attacking_Player_Name LIKE '%Pawan%' AND Defense_Techniques_Used LIKE '%AnkleHold%' AND Attack_Result_Status COLLATE NOCASE = 'Successful';
+2025-07-07 11:45:38,166 | INFO | User Question: hi
+2025-07-07 11:45:38,166 | INFO | Cleaned SQL: Error: No specific query requested. Please provide a question about the data.
+2025-07-07 12:29:00,540 | INFO | User Question: hi
+2025-07-07 12:29:00,541 | INFO | Cleaned SQL: Error: No specific query requested. Please provide a question about the data.
+2025-07-07 12:29:22,096 | INFO | User Question: team names
+2025-07-07 12:29:22,096 | INFO | Cleaned SQL: SELECT DISTINCT "Team_A_Name" FROM S_RBR UNION SELECT DISTINCT "Team_B_Name" FROM S_RBR;
+2025-07-07 12:29:35,996 | INFO | User Question: bb full form
+2025-07-07 12:29:35,996 | INFO | Cleaned SQL: Error: This question cannot be answered by querying the provided S_RBR table. The full form of team abbreviations is available in the provided documentation, not in the database schema.
+2025-07-07 12:30:09,243 | INFO | User Question: bb team player names
+2025-07-07 12:30:09,244 | INFO | Cleaned SQL: SELECT DISTINCT SUBSTR(Attacking_Player_Name, 1, INSTR(Attacking_Player_Name, '_') - 1) AS PlayerName FROM S_RBR WHERE Attacking_Team_Code = 'BB' AND Attacking_Player_Name IS NOT NULL UNION SELECT DISTINCT SUBSTR(Primary_Defender_Name, 1, INSTR(Primary_Defender_Name, '_') - 1) AS PlayerName FROM S_RBR WHERE Defending_Team_Code = 'BB' AND Primary_Defender_Name IS NOT NULL UNION SELECT DISTINCT SUBSTR(Secondary_Defender_Name, 1, INSTR(Secondary_Defender_Name, '_') - 1) AS PlayerName FROM S_RBR WHERE Defending_Team_Code = 'BB' AND Secondary_Defender_Name IS NOT NULL;
